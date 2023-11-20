@@ -32,6 +32,7 @@ exports.createAssessment = async ({
     });
 
     const [response] = await client.createAssessment(request);
+    console.log(response);
 
     // Check if the token is valid.
     if (!response.tokenProperties.valid) {

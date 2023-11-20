@@ -1,6 +1,6 @@
 <div class="register">
     <h3>Test Form</h3>
-    <form action="/recaptcha/v3" method="post">
+    <form action="/recaptcha/v3" method="post" id="demo-form">
         <div>Score: {{score}}</div>
         <div class="form-input">
             <label for="username">Username</label>
@@ -14,7 +14,7 @@
             <input type="checkbox" id="check" name="check" style="">
             <label for="check">Remember me</label>
         </div>
-        <input type="hidden" id="g-recaptcha-response" name="g-recaptcha-response">
+        <input type="hidden" id="token" value="token" name="token">
         <input type="hidden" name="action" value="validate_captcha">
         <div class="form-input">
             <button class="g-recaptcha" data-sitekey="6LdcNxUpAAAAAKywjiklDa2mhrZnLQFtBV2rPP5e" data-callback='onSubmit'
@@ -22,13 +22,25 @@
         </div>
     </form>
 </div>
+<script src="https://www.google.com/recaptcha/api.js"></script>
+<script>
+    function onSubmit(token) {
+        console.log(token);
+        document.getElementById("token").value = token;
+        document.getElementById("demo-form").submit();
+    }
+</script>
+{{!--
 <script src="https://www.google.com/recaptcha/enterprise.js?render=6LdcNxUpAAAAAKywjiklDa2mhrZnLQFtBV2rPP5e" async
-    defer></script>
+    defer></script> --}}
+{{!--
 <script>
     function onClick(e) {
         e.preventDefault();
-        grecaptcha.enterprise.ready(async () => {
-            const token = await grecaptcha.enterprise.execute('6LdcNxUpAAAAAKywjiklDa2mhrZnLQFtBV2rPP5e', { action: 'LOGIN' });
+        grecaptcha.ready(function () {
+            grecaptcha.execute('reCAPTCHA_site_key', { action: 'submit' }).then(function (token) {
+                // Add your logic to submit to your backend server here.
+            });
         });
     }
-</script>
+</script> --}}

@@ -17,8 +17,9 @@ app.get("/", (req, res) => {
     res.render("form");
 })
 app.post("/recaptcha/v3", async (req, res) => {
-    const { token, recaptchaAction } = req.body;
-    const data = await createAssessment({ token, recaptchaAction });
+    console.log(req.body);
+    const { token, action } = req.body;
+    const data = await createAssessment({ token, recaptchaAction: action });
     if (data === null) {
         return res.status(500).text("something error");
     }
