@@ -1,3 +1,4 @@
+require("dotenv").config()
 const express = require("express");
 const { create } = require('express-handlebars');
 const path = require('path');
@@ -20,10 +21,7 @@ app.post("/recaptcha/v3", async (req, res) => {
     console.log(req.body);
     const { token, action } = req.body;
     const data = await createAssessment({ token, recaptchaAction: action });
-    if (data === null) {
-        return res.status(500).text("something error");
-    }
-    return res.render("form", { score: data });
+    res.render("form", { score: data || 0 });
 })
 app.listen(3000, () => {
     console.log("server is listening in port 3000");

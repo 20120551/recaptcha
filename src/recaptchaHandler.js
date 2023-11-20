@@ -11,7 +11,7 @@ const { RecaptchaEnterpriseServiceClient } = require('@google-cloud/recaptcha-en
 exports.createAssessment = async ({
     // TODO: Replace the token and reCAPTCHA action variables before running the sample.
     projectID = "recaptcha-1700448243712",
-    recaptchaKey = "6LcLMhUpAAAAACR-xSQeWtHH9VcEAYu4u0eZSj9l",
+    recaptchaKey = "6LdcNxUpAAAAAKywjiklDa2mhrZnLQFtBV2rPP5e",
     token = "action-token",
     recaptchaAction = "action-name",
 }) => {
@@ -30,6 +30,8 @@ exports.createAssessment = async ({
         },
         parent: projectPath,
     });
+
+    console.log(request);
 
     const [response] = await client.createAssessment(request);
     console.log(response);
