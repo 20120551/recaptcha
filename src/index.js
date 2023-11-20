@@ -22,7 +22,7 @@ app.post("/recaptcha/v3", async (req, res) => {
     if (data === null) {
         return res.status(500).text("something error");
     }
-    return res.status(200).json(data);
+    return res.render("form", { score: data });
 })
 app.listen(3000, () => {
     console.log("server is listening in port 3000");
