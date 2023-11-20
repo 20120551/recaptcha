@@ -1,11 +1,11 @@
 require("dotenv").config()
 const express = require("express");
 const { create } = require('express-handlebars');
+const bodyParser = require('body-parser');
 const path = require('path');
 const { createAssessment } = require("./recaptchaHandler");
 
 const app = express();
-app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public')));
 const hbs = create({
     extname: 'hbs'
@@ -13,6 +13,9 @@ const hbs = create({
 app.engine('hbs', hbs.engine);
 app.set('view engine', 'hbs');
 app.set('views', path.join(__dirname, 'views'));
+
+app.use(express.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 app.get("/", (req, res) => {
     res.render("form");
