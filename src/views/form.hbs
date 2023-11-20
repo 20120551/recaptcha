@@ -15,7 +15,7 @@
             <label for="check">Remember me</label>
         </div>
         <input type="hidden" id="token" value="token" name="token">
-        <input type="hidden" name="action" value="validate_captcha">
+        <input type="hidden" name="action" value="submit">
         <div class="form-input">
             <button class="g-recaptcha" data-sitekey="6LdcNxUpAAAAAKywjiklDa2mhrZnLQFtBV2rPP5e" data-callback='onSubmit'
                 data-action='submit'>Submit</button>
@@ -25,7 +25,6 @@
 <script src="https://www.google.com/recaptcha/api.js"></script>
 <script>
     function onSubmit(token) {
-        console.log(token);
         document.getElementById("token").value = token;
         document.getElementById("demo-form").submit();
     }
